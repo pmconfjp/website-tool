@@ -34,7 +34,7 @@ npm i @google/clasp -g
 ### リポジトリをcloneする
 
 ```
-git clone git@github.com:miuranobuaki/parts-maker.git
+git clone git@github.com:pmconfjp/website-tool.git
 ```
 
 ### 依存ライブラリのインストール
