@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script type='text/javascript'>    
+      function handleDownload() {
+        var content = <?= getData(); ?>;
+        var fileName = <?= getFileName(); ?>;
+        var element = document.getElementById("download");
+        element.download = fileName;
+        var blob = new Blob([ content ], { "type" : "text/yaml"});
+        element.href = window.URL.createObjectURL(blob);
+      }
+    </script>
+  </head>
+  <body>
+    <a id="download" href="#" download="" onclick="handleDownload()">ダウンロード</a>
+  </body>
+</html>

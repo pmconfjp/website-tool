@@ -1,0 +1,16 @@
+// 識別子
+var TYPE = 'corporateSponsor';
+
+// この関数をトリガーに設定する
+function main() {
+  var html = HtmlService.createTemplateFromFile("download").evaluate();
+  SpreadsheetApp.getUi().showModalDialog(html, "ファイルダウンロード");
+}
+
+function getData() {
+  return pmconftest.localDownloadData(TYPE);
+}
+
+function getFileName() {
+  return pmconftest.localDownloadFileName(TYPE);
+}
