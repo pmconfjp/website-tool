@@ -8,9 +8,9 @@ function main() {
 }
 
 function getData() {
-  return pmconftest.localDownloadData(TYPE);
+  return pmconfwebparts.localDownloadData(TYPE);
 }
 
 function getFileName() {
-  return pmconftest.localDownloadFileName(TYPE);
+  return pmconfwebparts.localDownloadFileName(TYPE);
 }
