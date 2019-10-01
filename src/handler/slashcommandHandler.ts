@@ -45,7 +45,6 @@ export class SlashCommandHandler {
         Queue.corporateSponsor,
         Queue.jobs,
         Queue.keynote,
-        Queue.personalSponsor,
         // Queue.schedule,
         // Queue.session,
         Queue.speaker,

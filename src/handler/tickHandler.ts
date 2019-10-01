@@ -1,4 +1,3 @@
-import { PersonalSponsorApplication } from './../application/personalSponsorApplication';
 import { CorporateSponsorApplication } from './../application/corporateSponsorApplication';
 import { JobsApplication } from './../application/jobsApplication';
 import { StaffApplication } from './../application/staffApplication';
@@ -23,8 +22,7 @@ export class TickHandler {
       new SpeakerApplication(),
       new StaffApplication(),
       new JobsApplication(),
-      new CorporateSponsorApplication(),
-      new PersonalSponsorApplication()
+      new CorporateSponsorApplication()
     ];
 
     instances

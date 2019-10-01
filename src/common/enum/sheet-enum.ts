@@ -67,12 +67,3 @@ export enum CorporateSponsorColNum {
   url2 = 6,
   logoImageURL = 7
 }
-
-/**
- * 個人スポンサー情報のスプレッドシートのカラム番号のenum
- */
-export enum PersonalSponsorColNum {
-  name = 0,
-  logoImageUrl = 1,
-  url = 2
-}

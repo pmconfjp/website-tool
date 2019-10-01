@@ -8,7 +8,6 @@ export enum FileName {
   staff = 'staff.yml',
   jobs = 'jobs.yml',
   corporateSponsor = 'sponsors.yml',
-  // personalSponsor = 'personal-sponsors.yml',
   session = 'session{MMdd}.html.md',
   schedule = 'index.html.slim'
 }
@@ -22,7 +21,6 @@ export enum Queue {
   staff = 'staff-queue',
   jobs = 'job-queue',
   corporateSponsor = 'corporate-sponsor-queue',
-  personalSponsor = 'personal-sponsor-queue',
   schedule = 'schedule-queue',
   session = 'session-queue'
 }
@@ -44,9 +42,6 @@ export enum PropertyKey {
   // Corporate Sponsor Sheet INFO
   CorporateSponsorSheetID = 'CorporateSponsorSheetID',
   CorporateSponsorSheetName = 'CorporateSponsorSheetName',
-  // Personal Sponsor Sheet INFO
-  PersonalSponsorSheetID = 'PersonalSponsorSheetID',
-  personalSponsorSheetName = 'PersonalSponsorSheetName',
   // Timetable Sheet INFO
   TimetableSheetID = 'TimetableSheetID',
   TimetableShhetName = 'TimetableShhetName',

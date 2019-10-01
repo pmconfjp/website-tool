@@ -49,15 +49,6 @@ export interface CorporateSponsor {
   url2: string;
   logo_image_url: string;
 }
-/**
- * 個人スポンサーファイル作成に必要な情報のオブジェクト
- */
-export interface PersonalSponsor {
-  rowIdx?: number;
-  name: string;
-  logo_image_url: string;
-  url?: string;
-}
 
 /**
  * スケジュールファイル作成に必要な情報のオブジェクト
