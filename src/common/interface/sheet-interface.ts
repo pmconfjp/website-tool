@@ -16,6 +16,7 @@ export interface Speaker {
 export interface Staff {
   rowIdx?: number;
   name: string;
+  kana: string;
   organization?: string;
   title?: string;
   twitter?: string;

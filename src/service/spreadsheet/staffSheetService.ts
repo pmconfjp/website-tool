@@ -44,6 +44,7 @@ export class StaffSheetService extends SheetService {
         const staff: Staff = {
           rowIdx: parseInt(element['rowIdx']),
           name: element['value'][StaffColNum.name],
+          kana: element['value'][StaffColNum.kana],
           organization: element['value'][StaffColNum.organization],
           title: element['value'][StaffColNum.title],
           twitter: element['value'][StaffColNum.twitter],
