@@ -5,10 +5,9 @@ export enum SponsorGrade {
   platinam = 'platinas',
   gold = 'golds',
   silver = 'silvers',
-  drink = 'drinks',
-  media = 'medias',
-  community = 'communities',
-  persomal = 'personals'
+  bronze = 'bronze',
+  logo = 'logo',
+  drink = 'drinks'
 }
 
 /**
@@ -27,13 +26,23 @@ export enum SpeakerColNum {
  */
 export enum StaffColNum {
   name = 0,
-  organization = 1,
-  title = 2,
-  twitter = 3,
-  github = 4,
-  facebook = 5,
-  link = 6,
-  profile_image_url = 7
+  kana = 1,
+  romaji = 2,
+  organization = 3,
+  title = 4,
+  mailaddress = 5,
+  addMailingListAt = 6,
+  addGoogleDriveAt = 7,
+  addSlackAt = 8,
+  addTrello = 9,
+  addGithubAt = 10,
+  addGoogleCalendarAt = 11,
+  githubURL = 12,
+  gmailAddress = 13,
+  twitter = 14,
+  facebook = 15,
+  link = 16,
+  profile_image_url = 17
 }
 
 /**
@@ -50,8 +59,13 @@ export enum JobsColNum {
  */
 export enum CorporateSponsorColNum {
   grade = 0,
-  name = 1,
-  url = 2
+  type = 1,
+  displayOrder = 2,
+  name1 = 3,
+  url1 = 4,
+  name2 = 5,
+  url2 = 6,
+  logoImageURL = 7
 }
 
 /**

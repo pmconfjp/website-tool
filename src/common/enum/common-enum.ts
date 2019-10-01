@@ -2,11 +2,13 @@
  * 出力するファイル名を管理するためのenum
  */
 export enum FileName {
-  speaker = 'speaker.yml',
+  speaker = 'speakers.yml',
+  keynote = 'keynote.yml',
+  community = 'communities.yml',
   staff = 'staff.yml',
   jobs = 'jobs.yml',
-  corporateSponsor = 'corporate-sponsor.yml',
-  personalSponsor = 'personal-sponsor.yml',
+  corporateSponsor = 'sponsors.yml',
+  // personalSponsor = 'personal-sponsors.yml',
   session = 'session{MMdd}.html.md',
   schedule = 'index.html.slim'
 }
@@ -16,6 +18,7 @@ export enum FileName {
  */
 export enum Queue {
   speaker = 'speaker-queue',
+  keynote = 'keynote-queue',
   staff = 'staff-queue',
   jobs = 'job-queue',
   corporateSponsor = 'corporate-sponsor-queue',

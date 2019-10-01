@@ -47,7 +47,7 @@ export class StaffSheetService extends SheetService {
           organization: element['value'][StaffColNum.organization],
           title: element['value'][StaffColNum.title],
           twitter: element['value'][StaffColNum.twitter],
-          github: element['value'][StaffColNum.github],
+          github: element['value'][StaffColNum.githubURL],
           facebook: element['value'][StaffColNum.facebook],
           link: element['value'][StaffColNum.link],
           profile_image_url: element['value'][StaffColNum.profile_image_url]

@@ -19,7 +19,16 @@ export class CorporateSponsorSheetService extends SheetService {
    * @returns string[]
    */
   private transform(data: CorporateSponsor): String[] {
-    return [data.grade, data.name, data.logo_image_url, data.url, data.logo_image_url];
+    return [
+      data.grade,
+      data.type,
+      data.display_order.toString(),
+      data.name1,
+      data.url1,
+      data.name2,
+      data.url2,
+      data.logo_image_url
+    ];
   }
 
   /**
@@ -29,15 +38,19 @@ export class CorporateSponsorSheetService extends SheetService {
   allData(): CorporateSponsor[] {
     return this.getNoHeaderData()
       .filter((content: { [key: string]: any }) => {
-        return content['value'][CorporateSponsorColNum.name] != '';
+        return content['value'][CorporateSponsorColNum.name1] != '';
       })
       .map((element: { [key: string]: any }) => {
         const sponsor: CorporateSponsor = {
           rowIdx: parseInt(element['rowIdx']),
           grade: element['value'][CorporateSponsorColNum.grade],
-          name: element['value'][CorporateSponsorColNum.name],
-          url: element['value'][CorporateSponsorColNum.url],
-          logo_image_url: ''
+          type: element['value'][CorporateSponsorColNum.type],
+          display_order: element['value'][CorporateSponsorColNum.displayOrder],
+          name1: element['value'][CorporateSponsorColNum.name1],
+          url1: element['value'][CorporateSponsorColNum.url1],
+          name2: element['value'][CorporateSponsorColNum.name2],
+          url2: element['value'][CorporateSponsorColNum.url2],
+          logo_image_url: element['value'][CorporateSponsorColNum.logoImageURL]
         };
         return sponsor;
       });

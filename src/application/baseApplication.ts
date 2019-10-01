@@ -1,38 +1,30 @@
-import { JobObject } from '../common/interface/common-interface';
-import { QueueService } from '../service/queue/queueService';
+import { FileName } from './../common/enum/common-enum';
+import { Queue } from '../common/enum/common-enum';
 
+/**
+ * 基底applicationクラス
+ * 共通して行う処理を記述する。
+ */
 export class BaseApplication {
-  private queueName: string;
-  private queue: QueueService;
+  private queueName: Queue;
+  private fileName: FileName;
 
-  constructor(queueName: string) {
+  constructor(queueName: Queue, fileName: FileName) {
     this.queueName = queueName;
-    this.queue = new QueueService();
+    this.fileName = fileName;
   }
 
   /**
-   * ユーザの登録処理のQueueを取得する
-   * @returns SpeakerJob
+   * 作成するファイル名を返す
    */
-  public getQueue(): JobObject {
-    const jsonStr = JSON.parse(this.queue.getJobQueue(this.queueName));
-    const result: JobObject = { url: jsonStr['url'] };
-    return result;
+  getFileName(): FileName {
+    return this.fileName;
   }
 
   /**
-   * SpeakerのYAML出力処理をQueueに追加する
+   * Queue名を返す
    */
-  public addQueue(url: string): void {
-    const job: JobObject = { url: url };
-    this.queue.addJobQueue(this.queueName, JSON.stringify(job));
-  }
-
-  /**
-   * SpeakerYAMLの出力処理がQueueに入っているか確認する
-   * @returns boolean
-   */
-  public hasNext(): boolean {
-    return this.queue.hasNext(this.queueName);
+  getQueueName(): Queue {
+    return this.queueName;
   }
 }

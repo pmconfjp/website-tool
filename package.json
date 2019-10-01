@@ -9,6 +9,7 @@
     "build": "npm run lint && rimraf dist && webpack && cpx src/appsscript.json dist",
     "deploy": "npm run build && clasp push"
   },
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/pmconfjp/website-tool"
@@ -22,22 +23,22 @@
     "url": "https://github.com/pmconfjp/website-tool/issues"
   },
   "devDependencies": {
-    "@types/google-apps-script": "0.0.44",
-    "@types/jest": "24.0.11",
-    "@slack/web-api": "5.0.1",
+    "@types/google-apps-script": "0.0.62",
+    "@types/jest": "24.0.18",
+    "@slack/web-api": "5.2.0",
     "cpx": "1.5.0",
     "gas-webpack-plugin": "1.0.2",
-    "jest": "24.6.0",
-    "prettier": "1.16.4",
-    "rimraf": "2.6.3",
-    "ts-jest": "24.0.1",
-    "ts-loader": "5.3.3",
-    "tslint": "5.15.0",
+    "jest": "24.9.0",
+    "prettier": "1.18.2",
+    "rimraf": "3.0.0",
+    "ts-jest": "24.1.0",
+    "ts-loader": "6.2.0",
+    "tslint": "5.20.0",
+    "typescript": "3.6.3",
+    "webpack": "4.41.0",
+    "webpack-cli": "3.3.9",
     "tslint-config-prettier": "1.18.0",
-    "tslint-plugin-prettier": "2.0.1",
-    "typescript": "3.4.1",
-    "webpack": "4.29.6",
-    "webpack-cli": "3.3.0"
+    "tslint-plugin-prettier": "2.0.1"
   },
   "jest": {
     "globals": {

@@ -1,7 +1,7 @@
-import { Queue, FileName } from './../common/enum/common-enum';
+import { BaseApplication } from './baseApplication';
+import { FileName, Queue } from './../common/enum/common-enum';
 import { URLUtils } from './../utils/URLUtils';
 import { SponsorGrade } from '../common/enum/sheet-enum';
-import { BaseApplication } from './baseApplication';
 import { CorporateSponsor } from '../common/interface/sheet-interface';
 import { YAMLUtils } from '../utils/YAMLUtils';
 import { CorporateSponsorSheetService } from '../service/spreadsheet/CorporateSponsorSheetService';
@@ -9,34 +9,28 @@ import { CorporateSponsorSheetService } from '../service/spreadsheet/CorporateSp
  * 企業スポンサー情報のYAMLファイルを作成するクラス
  */
 export class CorporateSponsorApplication extends BaseApplication {
-  private sheet: CorporateSponsorSheetService;
-  private keys: string[] = ['grade', 'name', 'url', 'logo_image_url'];
+  constructor() {
+    super(Queue.corporateSponsor, FileName.corporateSponsor);
+  }
+
+  /**
+   * Spreadsheetのsponsorのグレードをymlの表記に変えるための連想配列
+   */
   private gradeMap: { [key: string]: string } = {
     プラチナ: SponsorGrade.platinam,
     ゴールド: SponsorGrade.gold,
     シルバー: SponsorGrade.silver,
-    ドリンク: SponsorGrade.drink,
-    メディア: SponsorGrade.media,
-    コミュニティー: SponsorGrade.community
+    ブロンズ: SponsorGrade.bronze,
+    ロゴ: SponsorGrade.logo,
+    ドリンク: SponsorGrade.drink
   };
-
-  constructor() {
-    super(Queue.corporateSponsor);
-    this.sheet = new CorporateSponsorSheetService();
-  }
-
-  /**
-   * 作成するファイル名を返す
-   */
-  getFileName(): string {
-    return FileName.corporateSponsor;
-  }
 
   /**
    * Spreadsheetからデータを取得
    */
   getAll(): CorporateSponsor[] {
-    return this.sheet.allData();
+    const sheet = new CorporateSponsorSheetService();
+    return sheet.allData();
   }
 
   /**
@@ -45,17 +39,38 @@ export class CorporateSponsorApplication extends BaseApplication {
    */
   toFileContent(): string {
     let result: string[] = [];
-    const groupbyGradeList = this.sheet
-      .allData()
-      .reduce((pre: { [key: string]: CorporateSponsor[] }, cur: CorporateSponsor) => {
-        if (!pre[this.gradeMap[cur.grade]]) pre[this.gradeMap[cur.grade]] = [];
-        pre[this.gradeMap[cur.grade]].push(cur);
-        return pre;
-      }, {});
+    const groupbyGradeList = this.groupbySponsorGrade();
     Object.keys(groupbyGradeList).forEach((key: string) => {
-      result.push(this.transferBlock(key, groupbyGradeList[key]));
+      result.push(this.transferBlock(key, this.sortedList(groupbyGradeList[key])));
     });
     return result.join('\n');
+  }
+
+  /**
+   * スポンサーのグレードでデータをまとめる
+   */
+  private groupbySponsorGrade(): { [key: string]: CorporateSponsor[] } {
+    return this.getAll().reduce(
+      (pre: { [key: string]: CorporateSponsor[] }, cur: CorporateSponsor) => {
+        const currentGrade: string = this.gradeMap[cur.grade];
+        if (!pre[currentGrade]) {
+          pre[currentGrade] = [];
+        }
+        pre[currentGrade].push(cur);
+        return pre;
+      },
+      {}
+    );
+  }
+
+  /**
+   * 表示順にソートする
+   * @param sponsorList 単一のグレードに絞り込まれたリスト
+   */
+  private sortedList(sponsorList: CorporateSponsor[]): CorporateSponsor[] {
+    return sponsorList.sort((a, b) => {
+      return a.display_order < b.display_order ? -1 : 1;
+    });
   }
 
   /**
@@ -67,21 +82,25 @@ export class CorporateSponsorApplication extends BaseApplication {
     const result: string[] = [grade + ':'];
     const blockArray: string[] = sponsors.reduce(
       (pre: string[], cur: CorporateSponsor): string[] => {
-        const block: { [key: string]: string } = {};
-        this.keys.forEach((key: string) => {
-          if (key === 'logo_image_url') {
-            block[key] = URLUtils.sponsorImageURL(cur.rowIdx, '.jpg');
-          } else if (key !== 'grade') {
-            block[key] = cur[key].replace(/\r?\n/g, '');
-          }
-        });
-        pre.push(
-          YAMLUtils.transferBlockIncludeEmptyField(this.keys.slice(1), block, [YAMLUtils.indent])
-        );
+        if (cur.logo_image_url) {
+          const block: { [key: string]: string } = {
+            name: cur.name1.replace(/\r?\n/g, ''),
+            name2: cur.name2.replace(/\r?\n/g, ''),
+            url: cur.url1.replace(/\r?\n/g, ''),
+            url2: cur.url2.replace(/\r?\n/g, ''),
+            logo_image_url: URLUtils.sponsorImageURL(
+              grade,
+              cur.logo_image_url.replace(/\r?\n/g, '')
+            )
+          };
+          pre.push(
+            YAMLUtils.transferBlockExcludeEmptyField(Object.keys(block), block, [YAMLUtils.indent])
+          );
+        }
         return pre;
       },
       []
     );
-    return result.concat(blockArray).join('\n') + '\n';
+    return blockArray.length > 0 ? result.concat(blockArray).join('\n') + '\n' : '';
   }
 }

@@ -41,8 +41,12 @@ export interface Jobs {
 export interface CorporateSponsor {
   rowIdx?: number;
   grade: string;
-  name: string;
-  url: string;
+  type: string;
+  display_order: number;
+  name1: string;
+  url1: string;
+  name2: string;
+  url2: string;
   logo_image_url: string;
 }
 /**

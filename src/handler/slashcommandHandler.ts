@@ -1,9 +1,6 @@
+import { Queue } from './../common/enum/common-enum';
+import { QueueApplication } from './../application/queueApplication';
 import { FileName } from '../common/enum/common-enum';
-import { PersonalSponsorApplication } from './../application/personalSponsorApplication';
-import { SpeakerApplication } from '../application/speakerApplication';
-import { StaffApplication } from '../application/staffApplication';
-import { JobsApplication } from '../application/jobsApplication';
-import { CorporateSponsorApplication } from '../application/corporateSponsorApplication';
 /**
  * Slackから `slashcommand`　が実行された時に処理を行うhandler
  * slackには3sec以内に応答を返さないとTimeoutする仕様があるので、
@@ -31,59 +28,49 @@ export class SlashCommandHandler {
    * ScriptCacheに情報を格納して、レスポンスを返す
    */
   execute() {
-    const appArray = this.handleApplication[this.command]();
-    appArray.forEach(
-      (
-        element:
-          | SpeakerApplication
-          | StaffApplication
-          | JobsApplication
-          | CorporateSponsorApplication
-          | PersonalSponsorApplication
-      ) => element.addQueue(this.responseURL)
-    );
+    const queueApp = new QueueApplication();
+    const queueTargetArray: string[] = this.handleQueue[this.command]();
+    queueTargetArray.forEach((ele: string) => queueApp.addQueue(ele, this.responseURL));
     return this.payload();
   }
 
   /**
-   * Slackのslashコマンドから必要なApplicationを返す
+   * Slackのslashコマンドから必要なQueueを返す
    * caseで書いても良かったがexecuteの見通しが悪くなるので分けた
    */
-  private handleApplication = {
-    '/parts-all': (): (
-      | SpeakerApplication
-      | StaffApplication
-      | JobsApplication
-      | CorporateSponsorApplication
-      | PersonalSponsorApplication)[] => {
+  private handleQueue = {
+    '/parts-all': (): string[] => {
       this.fileName = '全てのファイル';
       return [
-        new SpeakerApplication(),
-        new StaffApplication(),
-        new JobsApplication(),
-        new CorporateSponsorApplication(),
-        new PersonalSponsorApplication()
+        Queue.corporateSponsor,
+        Queue.jobs,
+        Queue.keynote,
+        Queue.personalSponsor,
+        // Queue.schedule,
+        // Queue.session,
+        Queue.speaker,
+        Queue.staff
       ];
     },
-    '/parts-speaker': (): SpeakerApplication[] => {
+    '/parts-keynote': (): string[] => {
       this.fileName = FileName.speaker;
-      return [new SpeakerApplication()];
+      return [Queue.keynote];
     },
-    '/parts-staff': (): StaffApplication[] => {
+    '/parts-speaker': (): string[] => {
+      this.fileName = FileName.speaker;
+      return [Queue.speaker];
+    },
+    '/parts-staff': (): string[] => {
       this.fileName = FileName.staff;
-      return [new StaffApplication()];
+      return [Queue.staff];
     },
-    '/parts-jobs': (): JobsApplication[] => {
+    '/parts-jobs': (): string[] => {
       this.fileName = FileName.jobs;
-      return [new JobsApplication()];
+      return [Queue.jobs];
     },
-    '/parts-corporate-sponsor': (): CorporateSponsorApplication[] => {
+    '/parts-corporate-sponsor': (): string[] => {
       this.fileName = FileName.corporateSponsor;
-      return [new CorporateSponsorApplication()];
-    },
-    '/parts-personal-sponsor': (): PersonalSponsorApplication[] => {
-      this.fileName = FileName.personalSponsor;
-      return [new PersonalSponsorApplication()];
+      return [Queue.corporateSponsor];
     }
   };
 
