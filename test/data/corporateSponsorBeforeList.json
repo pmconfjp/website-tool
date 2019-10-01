@@ -1,0 +1,35 @@
+[
+  {
+    "rowIdx": 1,
+    "grade": "platinas",
+    "type": "-",
+    "display_order": 1,
+    "name1": "A",
+    "url1": "https://aaaa.a.a",
+    "name2": "",
+    "url2": "",
+    "logo_image_file": "test.png"
+  },
+  {
+    "rowIdx": 2,
+    "grade": "platinas",
+    "type": "-",
+    "display_order": 3,
+    "name1": "B",
+    "url1": "https://bbbb.b.b",
+    "name2": "",
+    "url2": "",
+    "logo_image_file": "test.png"
+  },
+  {
+    "rowIdx": 3,
+    "grade": "platinas",
+    "type": "-",
+    "display_order": 2,
+    "name1": "C",
+    "url1": "https://cccc.c.c",
+    "name2": "",
+    "url2": "",
+    "logo_image_file": "test.png"
+  }
+]

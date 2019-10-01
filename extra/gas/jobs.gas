@@ -1,0 +1,16 @@
+// 識別子
+var TYPE = 'jobs';
+
+// この関数をトリガーに設定する
+function main() {
+  var html = HtmlService.createTemplateFromFile("download").evaluate();
+  SpreadsheetApp.getUi().showModalDialog(html, "ファイルダウンロード");
+}
+
+function getData() {
+  return pmconfwebparts.localDownloadData(TYPE);
+}
+
+function getFileName() {
+  return pmconfwebparts.localDownloadFileName(TYPE);
+}
