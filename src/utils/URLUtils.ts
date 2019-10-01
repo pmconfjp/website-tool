@@ -5,7 +5,11 @@ import { SponsorGrade } from '../common/enum/sheet-enum';
  */
 export class URLUtils {
   static speakerImageURL(image: string): string {
-    return '/assets/images/speakers/' + image;
+    if (image) {
+      return '/assets/images/speakers/' + image;
+    } else {
+      return '/assets/images/pmconf_ico.png';
+    }
   }
 
   static sponsorImageURL(grade: string, fileName: string): string {

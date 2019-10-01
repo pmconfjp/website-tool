@@ -14,11 +14,12 @@ export enum SponsorGrade {
  * Speaker情報のスプレッドシートのカラム番号のenum
  */
 export enum SpeakerColNum {
-  name = 3,
-  organization = 1,
-  title = 5,
-  profile_image_url = -1,
-  profile = 6
+  organization = 0,
+  name = 1,
+  kana = 2,
+  title = 3,
+  profile_image_url = 4,
+  profile = 5
 }
 
 /**

@@ -4,6 +4,7 @@
 export interface Speaker {
   rowIdx?: number;
   name: string;
+  kana: string;
   organization: string;
   title: string;
   profile_image_url: string;

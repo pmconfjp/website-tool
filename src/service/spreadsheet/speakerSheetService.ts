@@ -35,9 +35,10 @@ export class SpeakerSheetService extends SheetService {
         const spealer: Speaker = {
           rowIdx: parseInt(element['rowIdx']),
           name: element['value'][SpeakerColNum.name],
+          kana: element['value'][SpeakerColNum.kana],
           organization: element['value'][SpeakerColNum.organization],
           title: element['value'][SpeakerColNum.title],
-          profile_image_url: '',
+          profile_image_url: element['value'][SpeakerColNum.profile_image_url],
           profile: element['value'][SpeakerColNum.profile]
         };
         return spealer;

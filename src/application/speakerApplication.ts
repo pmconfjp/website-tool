@@ -17,7 +17,13 @@ export class SpeakerApplication extends BaseApplication {
    */
   getAll(): Speaker[] {
     const sheet = new SpeakerSheetService();
-    return sheet.allData();
+    return sheet.allData().sort((a: Speaker, b: Speaker) => {
+      if (a.kana < b.kana) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
   }
 
   /**
@@ -32,10 +38,10 @@ export class SpeakerApplication extends BaseApplication {
         organization: cur.organization.replace(/\r?\n/g, ''),
         title: cur.title.replace(/\r?\n/g, ''),
         profile_image_url: URLUtils.speakerImageURL(cur.profile_image_url.replace(/\r?\n/g, '')),
-        profile: cur.profile.replace(/\r?\n/g, '')
+        profile: '"' + cur.profile.replace(/\r?\n/g, '') + '"'
       };
       pre.push(
-        YAMLUtils.transferBlockExcludeEmptyField(Object.keys(block), block, [YAMLUtils.indent])
+        YAMLUtils.transferBlockIncludeEmptyField(Object.keys(block), block, [YAMLUtils.indent])
       );
       return pre;
     }, []);
