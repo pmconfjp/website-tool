@@ -34,6 +34,8 @@ export interface Staff {
  */
 export interface Jobs {
   rowIdx?: number;
+  sponsor_grade: string;
+  order: number;
   organization: string;
   title: string;
   url: string;

@@ -34,6 +34,8 @@ export class JobsSheetService extends SheetService {
       .map((element: { [key: string]: any }) => {
         const jobs: Jobs = {
           rowIdx: parseInt(element['rowIdx']),
+          sponsor_grade: element['value'][JobsColNum.sponsor_grade],
+          order: element['value'][JobsColNum.order],
           organization: element['value'][JobsColNum.organization],
           title: element['value'][JobsColNum.title],
           url: element['value'][JobsColNum.url]

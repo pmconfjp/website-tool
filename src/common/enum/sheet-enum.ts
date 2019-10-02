@@ -54,7 +54,9 @@ export enum StaffColNum {
 export enum JobsColNum {
   organization = 0,
   title = 1,
-  url = 2
+  url = 2,
+  sponsor_grade = 3,
+  order = 4
 }
 
 /**
