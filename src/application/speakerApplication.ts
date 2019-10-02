@@ -34,11 +34,14 @@ export class SpeakerApplication extends BaseApplication {
     let result: string[] = ['normals:'];
     const blockArray: string[] = this.getAll().reduce((pre: string[], cur: Speaker) => {
       const block: { [key: string]: string } = {
-        name: cur.name.replace(/\r?\n/g, ''),
-        organization: cur.organization.replace(/\r?\n/g, ''),
-        title: cur.title.replace(/\r?\n/g, ''),
-        profile_image_url: URLUtils.speakerImageURL(cur.profile_image_url.replace(/\r?\n/g, '')),
-        profile: '"' + cur.profile.replace(/\r?\n/g, '') + '"'
+        name: '"' + cur.name.replace(/\r?\n/g, '') + '"',
+        organization: '"' + cur.organization.replace(/\r?\n/g, '') + '"',
+        title: '"' + cur.title.replace(/\r?\n/g, '') + '"',
+        profile_image_url:
+          '"' + URLUtils.speakerImageURL(cur.profile_image_url.replace(/\r?\n/g, '')) + '"',
+        profile: '"' + cur.profile.replace(/\r?\n/g, '').replace(/"/g, '\\"') + '"',
+        session_title: '"' + cur.session_title.replace(/\r?\n/g, '').replace(/"/g, '\\"') + '"',
+        session_page_url: '"' + cur.session_page.replace(/\r?\n/g, '') + '"'
       };
       pre.push(
         YAMLUtils.transferBlockIncludeEmptyField(Object.keys(block), block, [YAMLUtils.indent])

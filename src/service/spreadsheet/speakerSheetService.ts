@@ -39,7 +39,9 @@ export class SpeakerSheetService extends SheetService {
           organization: element['value'][SpeakerColNum.organization],
           title: element['value'][SpeakerColNum.title],
           profile_image_url: element['value'][SpeakerColNum.profile_image_url],
-          profile: element['value'][SpeakerColNum.profile]
+          profile: element['value'][SpeakerColNum.profile],
+          session_title: element['value'][SpeakerColNum.session_title],
+          session_page: element['value'][SpeakerColNum.session_page]
         };
         return spealer;
       });

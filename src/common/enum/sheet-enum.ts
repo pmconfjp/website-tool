@@ -19,7 +19,9 @@ export enum SpeakerColNum {
   kana = 2,
   title = 3,
   profile_image_url = 4,
-  profile = 5
+  profile = 5,
+  session_title = 6,
+  session_page = 7
 }
 
 /**

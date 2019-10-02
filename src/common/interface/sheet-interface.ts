@@ -9,6 +9,8 @@ export interface Speaker {
   title: string;
   profile_image_url: string;
   profile: string;
+  session_title: string;
+  session_page: string;
 }
 
 /**
