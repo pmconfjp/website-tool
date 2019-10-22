@@ -14,12 +14,16 @@ export enum SponsorGrade {
  * Speaker情報のスプレッドシートのカラム番号のenum
  */
 export enum SpeakerColNum {
-  organization = 0,
-  name = 1,
-  kana = 2,
-  title = 3,
-  profile_image_url = 4,
-  profile = 5
+  id = 0,
+  organization = 1,
+  name = 2,
+  kana = 3,
+  title = 4,
+  profile_image_url = 5,
+  profile = 6,
+  session_title = 7,
+  session_id = 8,
+  speaker_type = 9
 }
 
 /**
@@ -52,7 +56,9 @@ export enum StaffColNum {
 export enum JobsColNum {
   organization = 0,
   title = 1,
-  url = 2
+  url = 2,
+  sponsor_grade = 3,
+  order = 4
 }
 
 /**
@@ -67,4 +73,17 @@ export enum CorporateSponsorColNum {
   name2 = 5,
   url2 = 6,
   logoImageURL = 7
+}
+
+export enum SessionColNum {
+  id = 0,
+  venue = 1,
+  time = 2,
+  outputFlag = 3,
+  staff = 4,
+  theme = 5,
+  organiztion = 6,
+  speakers = 7,
+  title = 8,
+  description = 9
 }

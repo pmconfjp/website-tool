@@ -35,18 +35,14 @@ export class StaffApplication extends BaseApplication {
   toFileContent(): string {
     let result: string[] = ['organizers:'];
     const blockArray: string[] = this.getAll().reduce((pre: string[], cur: Staff) => {
-      const name: string = cur.name.replace(/\r?\n/g, '');
-      const organization: string = cur.organization.replace(/\r?\n/g, '');
-      const title: string = cur.title.replace(/\r?\n/g, '');
-      const twitter: string = cur.twitter ? cur.twitter.replace(/\r?\n/g, '') : '';
-      const github: string = cur.github
-        ? cur.github.replace(/\r?\n/g, '').replace(/不要/g, '')
-        : '';
-      const facebook: string = cur.facebook ? cur.facebook.replace(/\r?\n/g, '') : '';
-      const link: string = cur.link ? cur.link.replace(/\r?\n/g, '') : '';
-      const profile_image_url: string = URLUtils.staffImageURL(
-        cur.profile_image_url.replace(/\r?\n/g, '')
-      );
+      const name: string = cur.name;
+      const organization: string = cur.organization;
+      const title: string = cur.title;
+      const twitter: string = cur.twitter ? cur.twitter : '';
+      const github: string = cur.github ? cur.github.replace(/不要/g, '') : '';
+      const facebook: string = cur.facebook ? cur.facebook : '';
+      const link: string = cur.link ? cur.link : '';
+      const profile_image_url: string = URLUtils.staffImageURL(cur.profile_image_url);
       const block: { [key: string]: string } = {
         name: name,
         organization: organization,

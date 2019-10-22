@@ -44,4 +44,16 @@ export class URLUtils {
   static staffImageURL(image: string): string {
     return '/assets/images/profile_images/' + image;
   }
+
+  /**
+   * session詳細ページのURLを作成する。
+   * @param id sessionID
+   */
+  static sessionPageURL(id: string): string {
+    if (id.indexOf('S1') === 0) {
+      return `/sessions/2019/11/12/${id}/`;
+    } else {
+      return `/sessions/2019/11/13/${id}/`;
+    }
+  }
 }

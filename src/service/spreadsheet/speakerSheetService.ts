@@ -34,12 +34,16 @@ export class SpeakerSheetService extends SheetService {
       .map((element: { [key: string]: any }) => {
         const spealer: Speaker = {
           rowIdx: parseInt(element['rowIdx']),
+          id: element['value'][SpeakerColNum.id],
           name: element['value'][SpeakerColNum.name],
           kana: element['value'][SpeakerColNum.kana],
           organization: element['value'][SpeakerColNum.organization],
           title: element['value'][SpeakerColNum.title],
           profile_image_url: element['value'][SpeakerColNum.profile_image_url],
-          profile: element['value'][SpeakerColNum.profile]
+          profile: element['value'][SpeakerColNum.profile],
+          session_title: element['value'][SpeakerColNum.session_title],
+          session_id: element['value'][SpeakerColNum.session_id],
+          speaker_type: element['value'][SpeakerColNum.speaker_type]
         };
         return spealer;
       });
