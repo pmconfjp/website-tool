@@ -41,9 +41,9 @@ export class JobsApplication extends BaseApplication {
       const target: Jobs[] = this.sortedList(groupbyGradeList[this.gradeMap[key]]);
       const blockArray: string[] = target.reduce((pre: string[], cur: Jobs) => {
         const block: { [key: string]: string } = {
-          organization: cur.organization.replace(/\r?\n/g, ''),
-          title: cur.title.replace(/\r?\n/g, ''),
-          url: cur.url.replace(/\r?\n/g, '')
+          organization: cur.organization,
+          title: cur.title,
+          url: cur.url
         };
         pre.push(YAMLUtils.transferBlockExcludeEmptyField(Object.keys(block), block, []));
         return pre;

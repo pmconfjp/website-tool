@@ -8,7 +8,8 @@ export enum FileName {
   staff = 'staff.yml',
   jobs = 'jobs.yml',
   corporateSponsor = 'sponsors.yml',
-  session = 'session{MMdd}.html.md',
+  session = 'sessions.yml',
+  sessionDetail = 'session{MMdd}.html.md',
   schedule = 'index.html.slim'
 }
 
@@ -22,7 +23,8 @@ export enum Queue {
   jobs = 'job-queue',
   corporateSponsor = 'corporate-sponsor-queue',
   schedule = 'schedule-queue',
-  session = 'session-queue'
+  session = 'session-queue',
+  sessionDetail = 'session-detail-queue'
 }
 
 /**

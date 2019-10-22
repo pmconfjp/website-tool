@@ -3,6 +3,7 @@
  */
 export interface Speaker {
   rowIdx?: number;
+  id: string;
   name: string;
   kana: string;
   organization: string;
@@ -10,7 +11,8 @@ export interface Speaker {
   profile_image_url: string;
   profile: string;
   session_title: string;
-  session_page: string;
+  session_id: string;
+  speaker_type: string;
 }
 
 /**
@@ -54,6 +56,21 @@ export interface CorporateSponsor {
   name2: string;
   url2: string;
   logo_image_url: string;
+}
+
+export interface Session {
+  rowIdx?: number;
+  id: string;
+  time: string;
+  staff: string;
+  theme: string;
+  organization: string;
+  title: string;
+  description: string;
+  venue: string;
+  session_page_url: string;
+  speakers: string[];
+  output_flag: boolean;
 }
 
 /**

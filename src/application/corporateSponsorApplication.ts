@@ -84,10 +84,10 @@ export class CorporateSponsorApplication extends BaseApplication {
       (pre: string[], cur: CorporateSponsor): string[] => {
         if (cur.logo_image_url) {
           const block: { [key: string]: string } = {
-            name: cur.name1.replace(/\r?\n/g, ''),
-            name2: cur.name2.replace(/\r?\n/g, ''),
-            url: cur.url1.replace(/\r?\n/g, ''),
-            url2: cur.url2.replace(/\r?\n/g, ''),
+            name: cur.name1,
+            name2: cur.name2,
+            url: cur.url1,
+            url2: cur.url2,
             logo_image_url: URLUtils.sponsorImageURL(
               grade,
               cur.logo_image_url.replace(/\r?\n/g, '')

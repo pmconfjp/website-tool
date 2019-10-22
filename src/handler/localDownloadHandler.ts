@@ -1,3 +1,4 @@
+import { SessionApplication } from './../application/sessionApplication';
 import { CorporateSponsorApplication } from './../application/corporateSponsorApplication';
 import { JobsApplication } from './../application/jobsApplication';
 import { StaffApplication } from './../application/staffApplication';
@@ -19,7 +20,8 @@ export class LocalDownloadHandler {
       | SpeakerApplication
       | StaffApplication
       | JobsApplication
-      | CorporateSponsorApplication = this.handleApplication[this.type]();
+      | CorporateSponsorApplication
+      | SessionApplication = this.handleApplication[this.type]();
     return app.toFileContent();
   }
 
@@ -31,7 +33,8 @@ export class LocalDownloadHandler {
       | SpeakerApplication
       | StaffApplication
       | JobsApplication
-      | CorporateSponsorApplication = this.handleApplication[this.type]();
+      | CorporateSponsorApplication
+      | SessionApplication = this.handleApplication[this.type]();
     return app.getFileName();
   }
 
@@ -50,6 +53,9 @@ export class LocalDownloadHandler {
     },
     corporateSponsor: (): CorporateSponsorApplication => {
       return new CorporateSponsorApplication();
+    },
+    session: (): SessionApplication => {
+      return new SessionApplication();
     }
   };
 }
